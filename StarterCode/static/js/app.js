@@ -90,7 +90,7 @@ function buildCharts(sample) {
         console.log(otuIds)
         console.log(sampleValues)
         console.log(otuLabels)
-        // Create bar chart in correct location
+        // Create bubble chart in correct location
         var trace1 = {
             x: otuIds,
             y: sampleValues,
@@ -112,7 +112,30 @@ function buildCharts(sample) {
           };
           
           Plotly.newPlot('bubble', data, layout);
-        // Create bubble chart in correct location
+
+        // Create bar chart in correct location
+
+        var trace1 = {
+            x: sampleValues,
+            y: otuIds,
+            marker: {
+                color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
+            },
+            type: 'bar',
+            orientation:"h"
+
+        };
+
+        var data = [trace1];
+
+        var layout = {
+            title: 'Top OTUs Found'
+        };
+
+        Plotly.newPlot('bar', data, layout);
+
+
+
     });
     
 }
