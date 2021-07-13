@@ -2,28 +2,21 @@
 This is not the only way to complete this assignment.
 Feel free to disregard and create your own code */
 
-let arrowDropdown = d3.select("#selDataset");
 
-// arrowDropdown.on("change", function(){
-// let newText = d3.event.target.value;
-// console.log(newText);
-// console.log(arrowDropdown.text())
-    
-// });
+
+
 // Define function that will run on page load
 function init() {
-
+    
     // Read json data
     // Parse and filter data to get sample names 
     // Add dropdown option for each sample
     // data is an object with three arrays, names, metadat, and samples
+    let arrowDropdown = d3.select("#selDataset");
+
     d3.json("samples.json").then(function(data) {
         console.log(data);
         // fetching first id from 'names' which is an array of items
-        // console.log(data.names[0]);
-        let firstId = data.names[0];
-        console.log(firstId);
-        
         data.names.forEach((name, i) => {
             let appendOption = arrowDropdown.append("option").text(name).attr('value', name);
         });
@@ -37,18 +30,18 @@ function init() {
 
 // Define a function that will create metadata for given sample
 function buildMetadata(sample) {
-
+    console.log(sample)
     let demographicInfoBox = d3.select("#sample-metadata");
     // Read the json data
     // Parse and filter the data to get the sample's metadata
     // Specify the location of the metadata and update it
     d3.json("samples.json").then(function(data) {
 
-       let metaData = data.metadata;
-       //console.log(data.metadata[1]);
-       console.log(metaData);
-      
-       // fitering first matching item from' metadata' which is again an object 
+        let metaData = data.metadata;
+        //console.log(data.metadata[1]);
+        console.log(metaData);
+       
+        // fitering first matching item from' metadata' which is again an object 
         filterData = metaData.filter(firstItem => firstItem.id == data.names[0])
         console.log(filterData)
         // assigning the first item in the object to a variable
@@ -71,6 +64,17 @@ function buildCharts(sample) {
     // Read the json data
 
     d3.json("samples.json").then(function(data) {
+        
+        let metaData = data.metadata;
+        //console.log(data.metadata[1]);
+        console.log(metaData);
+      
+        // fitering first matching item from' metadata' which is again an object 
+        filtermetaData = metaData.filter(firstItem => firstItem.id == data.names[0])
+        console.log(filtermetaData)
+        // assigning the first item in the object to a variable
+        filtermetaData = filtermetaData[0]
+        console.log(filtermetaData.wfreq)
 
         // Parse and filter the data to get the sample's OTU data
         // Pay attention to what data is required for each chart
@@ -140,6 +144,22 @@ function buildCharts(sample) {
 
         Plotly.newPlot('bar', data, layout);
 
+        // gauge chart
+       
+
+        var data = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: filtermetaData.wfreq,
+                title: { text: "Speed" },
+                type: "indicator",
+                mode: "gauge+number"
+            }
+        ];
+        
+        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+        Plotly.newPlot('gauge', data, layout);
+
 
 
     });
@@ -158,5 +178,6 @@ function optionChanged(sample){
 
 // Initialize dashboard on page load
 init();
+
 
 
