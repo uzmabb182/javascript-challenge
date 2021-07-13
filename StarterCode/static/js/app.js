@@ -173,7 +173,7 @@ function optionChanged(sample) {
     // The parameter being passed in this function is new sample id from dropdown menu
     console.log(sample)
     // Update metadata with newly selected sample
-    // buildMetadata(sample);
+    buildMetadata(sample);
     // buildCharts(sample);
     // Update charts with newly selected sample
 
