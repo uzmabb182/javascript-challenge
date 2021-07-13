@@ -4,12 +4,12 @@ Feel free to disregard and create your own code */
 
 let arrowDropdown = d3.select("#selDataset");
 
-arrowDropdown.on("change", function(){
-let newText = d3.event.target.value;
-console.log(newText);
-console.log(arrowDropdown.text())
+// arrowDropdown.on("change", function(){
+// let newText = d3.event.target.value;
+// console.log(newText);
+// console.log(arrowDropdown.text())
     
-});
+// });
 // Define function that will run on page load
 function init() {
 
@@ -25,7 +25,7 @@ function init() {
         console.log(firstId);
         
         data.names.forEach((name, i) => {
-            let appendOption = arrowDropdown.append("option").text(name).attr('value', i);
+            let appendOption = arrowDropdown.append("option").text(name).attr('value', name);
         });
       
     });
@@ -36,7 +36,7 @@ function init() {
 }
 
 // Define a function that will create metadata for given sample
-function buildMetadata() {
+function buildMetadata(sample) {
 
     let demographicInfoBox = d3.select("#sample-metadata");
     // Read the json data
@@ -90,6 +90,7 @@ function buildCharts(sample) {
         console.log(otuIds)
         console.log(sampleValues)
         console.log(otuLabels)
+
         // Create bubble chart in correct location
         var trace1 = {
             x: otuIds,
@@ -114,12 +115,16 @@ function buildCharts(sample) {
           Plotly.newPlot('bubble', data, layout);
 
         // Create bar chart in correct location
+        // Slice the first ten names
 
+        let otuIdsten = otuIds.slice(0, 10);
+        console.log(otuIdsten)
         var trace1 = {
             x: sampleValues,
-            y: otuIds,
+            y: otuIdsten,
+           
             marker: {
-                color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
+                // color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
             },
             type: 'bar',
             orientation:"h"
@@ -129,7 +134,8 @@ function buildCharts(sample) {
         var data = [trace1];
 
         var layout = {
-            title: 'Top OTUs Found'
+            title: 'Top Ten OTUs Found',
+           
         };
 
         Plotly.newPlot('bar', data, layout);
@@ -143,7 +149,7 @@ function buildCharts(sample) {
 
 function optionChanged(sample){
     // The parameter being passed in this function is new sample id from dropdown menu
-   
+   console.log(sample)
     // Update metadata with newly selected sample
 
     // Update charts with newly selected sample
