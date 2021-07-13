@@ -99,7 +99,7 @@ function buildCharts(sample) {
 
         // Create bubble chart in correct location
         var trace1 = {
-            x: otuIds,
+            x: otuIds, 
             y: sampleValues,
             mode: 'markers',
             marker: {
@@ -121,7 +121,7 @@ function buildCharts(sample) {
         Plotly.newPlot('bubble', data, layout);
 
         // Create bar chart in correct location
-        // Slice the first ten names
+        // Slice the first ten names an reverse the sliced data
 
         let otuIdsten = otuIds.slice(0, 10);
         console.log(otuIdsten)
@@ -174,9 +174,9 @@ function optionChanged(sample) {
     console.log(sample)
     // Update metadata with newly selected sample
     buildMetadata(sample);
-    // buildCharts(sample);
+    
     // Update charts with newly selected sample
-
+    buildCharts(sample);
 }
 
 // Initialize dashboard on page load
