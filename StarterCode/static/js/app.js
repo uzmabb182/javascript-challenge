@@ -11,7 +11,7 @@ function init() {
     // Read json data
     // Parse and filter data to get sample names 
     // Add dropdown option for each sample
-    // data is an object with three arrays, names, metadat, and samples
+    // data is an object with three arrays, names, metadata, and samples
     let arrowDropdown = d3.select("#selDataset");
 
     d3.json("samples.json").then(function (data) {
@@ -99,7 +99,7 @@ function buildCharts(sample) {
 
         // Create bubble chart in correct location
         var trace1 = {
-            x: otuIds, 
+            x: otuIds,
             y: sampleValues,
             mode: 'markers',
             marker: {
@@ -112,7 +112,7 @@ function buildCharts(sample) {
         var data = [trace1];
 
         var layout = {
-            title: 'otu_ids Vs. sample_values',
+            title: 'OTU_IDs Vs. Sample_Values',
             showlegend: false,
             height: 500,
             width: 1300
@@ -174,7 +174,7 @@ function optionChanged(sample) {
     console.log(sample)
     // Update metadata with newly selected sample
     buildMetadata(sample);
-    
+
     // Update charts with newly selected sample
     buildCharts(sample);
 }
