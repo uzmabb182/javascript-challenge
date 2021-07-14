@@ -8,8 +8,6 @@ The task of this assignment is to build an interactive dashboard to explore the 
 
 - A dropdown menu is populated with all the operational taxonomic units, or OTU sample ID's on the page load from 'data.names' array.
 
-![dropdown menu](output_images/drop_down.PNG)
-
 - Each key-value pair from the metadata JSON object is displayed in the 'demographic_info._box' on the page load. Each sample metadata, is an individual's demographic information. This task is performed by defining function 'buildMetadata'.
 
 ![demographic_info](output_images/demographic_info.PNG)
@@ -42,10 +40,10 @@ _ And a  **gauge plot** displays the weekly washing frequency of the belly butto
 
 - Below are the screen shots of the updated information on the page.
 
-![new_sample_charts](output_images/new_sample_chart_demographic_update.PNG)
+![new_sample_charts and demographic_info](output_images/new_sample_chart_demographic_update.PNG)
 
 
-![new_sample_demographic_info](output_images/new_sample_chart_demographic_update.PNG)
+
 
 
 
