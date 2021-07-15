@@ -112,10 +112,34 @@ function buildCharts(sample) {
         var data = [trace1];
 
         var layout = {
+
             title: 'OTU_IDs Vs. Sample_Values',
             showlegend: false,
             height: 500,
-            width: 1300
+            width: 1300,
+
+            xaxis: {
+                title: {
+                text: 'OTU_IDs',
+                font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+                }
+                }
+                },
+
+                yaxis: {
+                title: {
+                text: 'Sample_Values',
+                font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+                }
+                }
+                }
+
         };
 
         Plotly.newPlot('bubble', data, layout);
@@ -153,13 +177,20 @@ function buildCharts(sample) {
             {
                 domain: { x: [0, 1], y: [0, 1] },
                 value: filtermetaData.wfreq,
-                title: { text: "Belly Button Washing Freq." },
+                title: { text: "Belly Button Washing Frequency" },
                 type: "indicator",
-                mode: "gauge+number"
-            }
+                mode: "gauge+number",
+                gauge: { axis: { range: [null, 9] }},
+                
+            },
+            
         ];
 
-        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+        var layout = { 
+            width: 700, 
+            height: 600, 
+            margin: { t: 20, b: 40, l:100, r:100 }
+         };
         Plotly.newPlot('gauge', data, layout);
 
 
